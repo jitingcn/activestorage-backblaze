@@ -77,7 +77,7 @@ class ActiveStorage::Service::BackblazeService < ActiveStorage::Service
       payload[:url] = url
 
       endpoint = config.fetch(:endpoint, nil)
-      if endpoint:
+      if endpoint
         url.gsub!("https://f002.backblazeb2.com", endpoint)
       end
 
