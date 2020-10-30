@@ -78,7 +78,7 @@ class ActiveStorage::Service::BackblazeService < ActiveStorage::Service
       url = @connection.get_public_object_url(@bucket_name, key)
       payload[:url] = url
 
-      endpoint = config.fetch(:endpoint, nil)
+      endpoint = @config.fetch(:endpoint, nil)
       if endpoint
         url.gsub!("https://f002.backblazeb2.com", endpoint)
       end
