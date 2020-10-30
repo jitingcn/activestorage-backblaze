@@ -1,11 +1,13 @@
 require "fog/backblaze"
 
 class ActiveStorage::Service::BackblazeService < ActiveStorage::Service
-  def initialize(key_id:, key_token:, bucket_name:, bucket_id:)
-    @key_id = key_id
-    @key_token = key_token
-    @bucket_name = bucket_name
-    @bucket_id = bucket_id
+  def initialize(**config)
+    @config = config
+    @key_id = @config.fetch(:key_id)
+    @key_token = @config.fetch(:key_token)
+    @bucket_name = @config.fetch(:bucket_name)
+    @bucket_id = @config.fetch(:bucket_id)
+
     @connection = Fog::Storage.new(
       provider: 'backblaze',
       b2_key_id: @key_id,
